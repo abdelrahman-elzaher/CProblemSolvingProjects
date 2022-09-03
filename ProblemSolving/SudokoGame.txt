@@ -1,0 +1,160 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <conio.h>
+#include <Windows.h>
+
+static int arr2[9][9]={-1};
+
+static char arr[9][9]=
+    {
+        {'2','*','5','*','*','9','*','*','4'},
+        {'*','*','*','*','*','*','3','*','7'},
+        {'7','*','*','8','5','6','*','1','*'},
+        {'4','5','*','7','*','*','*','*','*'},
+        {'*','*','9','*','*','*','1','*','*'},
+        {'*','*','*','*','*','2','*','8','5'},
+        {'*','2','*','4','1','8','*','*','6'},
+        {'6','*','8','*','*','*','*','*','*'},
+        {'1','*','*','2','*','*','7','*','8'}
+};
+static int Count=30;
+
+
+int CheckReversed(int row, int col)
+{
+    if(arr2[row][col]==1)
+        return 1;
+    else
+        return 0;
+}
+
+int CheckRow(char Num,int row,int col)
+{
+    for(int i=0;i<9;i++)
+    {
+        if(i==col)
+            continue;
+        else
+        {
+            if(Num==arr[row][i])
+                return 1;
+        }
+    }
+    return 0;
+}
+int CheckCol(char Num,int row,int col)
+{
+    for(int i=0;i<9;i++)
+    {
+        if(i==row)
+            continue;
+        else
+        {
+            if(Num==arr[i][col])
+                return  1;
+        }
+    }
+    return 0;
+}
+static void FillStaticArrayReversed(void)
+{
+
+    int i, j;
+    for(i=0;i<9;i++)
+    {
+        for(j=0;j<9;j++)
+        {
+            if(arr[i][j]=='*')
+            {
+                arr2[i][j]=-1;
+            }
+            else
+                arr2[i][j]=1;
+
+        }
+}
+}
+void PutIntFromUser(int row,int col,int IntegerNumber)
+{
+    char Num=IntegerNumber+'0';
+    if(CheckReversed(row,col))
+    {
+        printf("you can't enter in this position as it is reversed\n");
+        return 0;
+    }
+    if(CheckRow(Num,row,col))
+    {
+        printf("you can't enter in this position as it the number already exist in same row\n");
+        return 0;
+    }
+    if(CheckCol(Num,row,col))
+    {
+        printf("you can't enter in this position as it the number already exist in same col\n");
+        return 0;
+    }
+    if(arr[row][col]=='*')
+        Count++;
+    arr[row][col]=Num;
+}
+
+void PrintSudoko()
+{
+    int i, j;
+    for(i=0;i<9;i++)
+    {
+        for(j=0;j<9;j++)
+        {
+            if(j==0)
+            {
+               printf(" %c ",arr[i][j]);
+            }
+            else if(j==3 ||j==6)
+            printf("|%c ",arr[i][j]);
+            else
+            {
+                printf("- %c ",arr[i][j]);
+            }
+
+        }
+        if(i==2||i==5)
+            printf(" \n--------------------------------\n");
+
+        else
+        printf("\n");
+    }
+}
+
+void CallSudokoGame()
+{
+    FillStaticArrayReversed();
+    printf("-----------        Hello welcome to sudoko game    ----------\n");
+    PrintSudoko();
+    int x,y,num;
+    char played=0;
+    char flag=0;
+    while(1)
+    {
+
+        printf("enter the row number =");
+        scanf("%d",&x);
+        printf("enter the col number =");
+        scanf("%d",&y);
+        printf("enter the number =");
+        scanf("%d",&num);
+        system("cls");
+        PutIntFromUser(x-1,y-1,num);
+
+    printf("-----------   sudoko game    ----------\n");
+
+        PrintSudoko();
+    if(Count==81)
+        {
+            printf("===================Congratualtions=================\n");
+            break;
+        }
+
+    }
+
+
+
+}
