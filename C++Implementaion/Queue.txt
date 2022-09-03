@@ -1,0 +1,88 @@
+#include <iostream>
+
+
+using namespace std;
+
+class queue {
+   
+ 
+public:
+
+int data[100]={0},rear=-1,front=-1;
+
+
+ void enqueue (int val)    
+ 
+{
+
+if(rear==-1)
+front=0;
+ if(rear<99)
+  
+ {
+
+     rear++;
+ 
+ data[rear]=val;
+
+ }
+ 
+else
+
+ cout<<"Queue Overflow"<<endl;
+ 
+}
+ int dequeue()
+ 
+{
+    
+if(front>0)
+
+{
+    
+front++;
+return data[front-1];
+
+    }
+
+    else
+{
+    
+cout<<"Queue Underflow"<<endl;
+
+}    
+    
+}
+
+};
+
+
+int main()
+
+{
+
+
+queue q;
+
+q.dequeue();
+
+q.enqueue(5);
+
+q.enqueue(7);
+
+q.enqueue(10);
+
+q.enqueue(2);
+
+cout<<q.dequeue()<<endl;
+
+cout<<q.dequeue()<<endl;
+
+cout<<q.dequeue()<<endl;
+
+cout<<q.dequeue()<<endl;
+
+
+    return 0;
+
+}

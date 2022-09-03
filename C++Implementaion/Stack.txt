@@ -1,0 +1,87 @@
+#include <iostream>
+
+
+using namespace std;
+
+class stack {
+    
+
+public:
+
+int data[100]={0},stp=-1;
+
+
+ void push(int val)    
+ 
+{
+
+ if(stp<99)  
+ 
+{
+     
+stp++;
+
+ data[stp]=val;
+ 
+}
+
+ else
+
+ cout<<"Stack Overflow"<<endl;
+
+ }   
+    
+int pop()
+    
+{
+
+    if(stp>-1)
+    
+{
+    
+stp--;
+
+    return data[stp+1];
+
+    }
+
+    else
+{
+    
+cout<<"Stack Underflow"<<endl;
+
+    return 0;
+
+    } 
+   
+    }
+
+};
+
+
+int main()
+
+{
+
+
+stack s;
+
+s.pop();
+
+s.push(5);
+
+s.push(7);
+
+s.push(10);
+
+s.push(2);
+
+cout<<s.pop()<<endl;
+
+cout<<s.pop()<<endl;
+
+cout<<s.pop()<<endl;
+
+cout<<s.pop()<<endl;
+return 0;
+}

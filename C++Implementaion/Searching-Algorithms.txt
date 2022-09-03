@@ -1,0 +1,76 @@
+
+
+#include <iostream>
+
+
+using namespace std;
+
+void linear_search(int a[],int size,int val){
+
+int i;
+
+for(i=0;i<size;i++)
+{
+
+if(a[i]==val)
+
+break;
+
+}
+
+if(i<size)
+
+cout<<"the value found at location "<<i<<endl;
+
+else
+
+cout<<"Not Found"<<endl;
+
+}
+
+void binary_search(int a[],int start,int end,int val){
+
+int mid=(start+end)/2;
+
+if(start<=end){
+
+if(val==a[mid])
+
+cout<<"the value found at location "<<mid<<endl;
+
+else if(val<a[mid])
+
+binary_search(a,start,mid-1,val);
+
+else 
+
+binary_search(a,mid+1,end,val);
+
+}
+
+else
+
+cout<<"Not Found"<<endl;
+
+}
+
+int main()
+{
+
+int array[7]={1,5,8,12,19,26,37};
+
+linear_search(array,7,12);
+
+linear_search(array,7,4);
+
+binary_search(array,0,7,1);
+
+binary_search(array,0,7,12);
+
+binary_search(array,0,7,37);
+
+binary_search(array,0,7,25);
+
+    return 0;
+
+}

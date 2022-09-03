@@ -1,0 +1,293 @@
+#include <iostream>
+
+
+
+using namespace std;
+
+
+struct node
+
+{
+
+
+int data;
+
+
+ node *nxt;
+
+
+
+};
+
+void Add_at_first (node* list,int val)
+
+{
+
+
+if(list==NULL)
+
+
+{
+
+
+node *list=new node();
+
+
+list->data=val;
+
+
+list->nxt=NULL;
+
+
+}
+
+
+else
+
+
+{
+
+
+node *n=new node();
+
+
+n->data=val;
+
+
+n->nxt=list->nxt;
+
+
+list->nxt=n;
+
+
+}
+
+
+}
+
+
+void Add_at_last (node* list,int val)
+
+{
+
+
+while(list->nxt != NULL)
+
+
+{
+
+
+list=list->nxt;
+
+}
+
+
+node *n=new node();
+
+
+n->data=val;
+
+
+list->nxt=n;
+
+
+n->nxt=NULL;
+
+
+}
+
+
+void Add_at_mid (node* list,int pos,int val)
+
+
+{
+
+
+for(int i=0;i<pos;i++)
+
+
+list=list->nxt;
+
+
+node *n=new node();
+
+
+n->data=val;
+
+
+n->nxt=list->nxt;
+
+
+list->nxt=n;
+
+
+}
+
+
+void delete_first(node* &list)
+
+
+{
+
+node *temp=list;
+
+list=list->nxt;
+
+delete temp;
+
+
+}
+
+
+void delete_last(node* list)
+
+
+{
+
+while(list->nxt->nxt!=NULL)
+ 
+list=list->nxt;
+
+delete list->nxt;
+
+list->nxt=NULL;
+
+
+}
+
+
+void delete_at_mid(node* list,int pos)
+
+
+{
+
+for(int i=0;i<pos;i++)
+
+list=list->nxt;
+
+delete list->nxt;
+
+list->nxt=list->nxt->nxt;
+
+
+}
+
+
+void print_list(node* list)
+
+
+{
+    
+
+list=list->nxt;
+
+
+while(list != NULL)
+
+
+{
+
+
+cout<<list->data<<" ";
+
+
+list=list->nxt;
+
+
+}
+
+
+}
+
+
+int main ()
+
+
+{
+
+
+node* n1=new node();
+
+
+node *head=new node();
+
+
+head->nxt=n1;
+
+
+n1->data=5;
+
+
+n1->nxt=NULL;
+
+
+print_list(head);
+
+
+cout<<endl;
+
+
+Add_at_last(head,7);
+
+
+print_list(head);
+
+
+cout<<endl;
+
+
+Add_at_first(head,9);
+
+
+print_list(head);
+
+
+cout<<endl;
+
+
+Add_at_mid(head,1,8);
+
+Add_at_mid(head,1,10);
+
+Add_at_mid(head,3,6);
+
+Add_at_mid(head,3,4);
+
+print_list(head);
+
+
+cout<<endl;
+
+
+delete_at_mid(head,1);
+
+
+print_list(head);
+
+
+cout<<endl;
+
+
+delete_first(head);
+
+
+print_list(head);
+
+
+cout<<endl;  
+
+
+delete_last(head);
+
+
+print_list(head);
+
+
+cout<<endl;
+
+return 0;
+
+
+}
+
+  
