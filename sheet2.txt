@@ -1,0 +1,324 @@
+					//////////////////////////////// sheet 2|task 1///////////////////////////////////
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	float raduis=0,circumference=0,area=0;
+	printf("Enter the radius of the circle: ");
+	scanf("%f",&raduis);
+	circumference=2*3.14*raduis;
+	area=3.14*raduis*raduis;
+    printf("the circumference= %lf and the area= %lf",circumference,area);
+    return 0;
+}
+
+///////////////////////////////////////////////////////////////////////////////////////////////////////////	
+								///////////////sheet 2|task 2////////////////////
+#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
+int main()
+{
+    while(1)
+    {
+        int number=0;
+        char character;
+        printf("Enter a number : ");
+        scanf("%d",&number);
+        printf("Enter a char : ");
+        scanf(" %c",&character);
+        if(number&1)
+        {
+            if (character >= 'a' && character <= 'z')
+                character=toupper(character);
+            else if (character >='A' && character <= 'Z')
+                character =tolower(character);
+            printf("you entered an odd number which is %d , and the character you entered is now %c\n",number,character);
+        }
+        else
+            printf("you entered an even number which is %d , and the character you entered is %c\n",number,character);
+    }
+    return 0;
+}
+
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+							////////sheet 2 |task 3///////////
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    while(1)
+    {
+        unsigned int input=0,output=0;
+        printf("Enter a number : ");
+        scanf("%u",&input);
+        while(input)
+        {
+        output*=10;
+        output+=input%10;
+        input/=10;
+        }
+        printf("the number you entered but reversed = %d \n",output);
+    }
+    return 0;
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+							////////////sheet2 |task 4//////////////
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    while(1)
+    {
+        unsigned int input=0,counter=0;
+        printf("Enter a number : ");
+        scanf("%u",&input);
+        while(input)
+        {
+        if(input&1)
+            counter++;
+        input>>=1;
+        }
+        printf("the number of 1\'s in the number you entered = %d \n",counter);
+    }
+    return 0;
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+							/////////sheet2|task 5/////////
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    while(1)
+    {
+        unsigned int number=0,flag=0;
+        printf("Enter a number : ");
+        scanf(" %u",&number);
+        printf("the binary representation of the number you entered = ");
+        if(number==0)
+        printf("0\n");
+        else
+        {
+        for(int i=31;i>=0;i--)
+        {
+        if((number>>i)&1)
+        {
+         flag=1;
+         printf("1");
+        }
+        else
+        {
+            if(flag==1)
+            printf("0");
+        }
+        }
+        printf("\n");
+    }
+    }
+    return 0;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////
+								/////sheet2|task 6///////
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    while(1)
+    {
+        unsigned int input=0,output=0;
+        printf("Enter a number : ");
+        scanf("%u",&input);
+        for(int i=0;i<8;i++)
+        {
+        output<<=1;
+        if(1&input)
+        output |= 1;
+        input>>=1;
+        }
+        printf("the binary representation of the number you entered = %d \n",output);
+    }
+    return 0;
+}
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////// sheet 2|task 7////////////////////////////
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+	int Num=100;
+	int Sum;
+	Sum=((Num*(Num+1))/2;
+	printf("the summation from 1 to 100 is = %d",Sum);
+	return 0;
+
+}
+////////////////////////////////////////////////////////////////////////////////////////////////////////
+							//////sheet 2 -> task 8///
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    while(1)
+    {
+        unsigned int number=0,operation=0,bit=0;
+        printf("Enter number from 1 to 4 so :\n");
+        printf("1- Set bit.\n2- Clear bit.\n3- Toggle bit.\n4- Read bit.\n");
+        scanf("%u",&operation);
+        printf("Enter number : ");
+        scanf("%u",&number);
+        printf("Enter bit number : ");
+        scanf("%u",&bit);
+        switch (operation)
+        {
+        case 1:
+        {
+        number=number|(1<<bit);
+        printf("the number you entered after setting the %uth bit=%u.\n",bit,number);
+        }
+        break;
+        case 2:
+        {
+        number=number&(~(1<<bit));
+        printf("the number you entered after clearing the %uth bit=%u.\n",bit,number);
+        }
+        break;
+        case 3:
+        {
+        number=number^(1<<bit);
+        printf("the number you entered after setting the %uth bit=%u.\n",bit,number);
+        }
+        break;
+        case 4:
+        {
+        number=(number>>bit)&1;
+        printf("the %uth bit in the number you entered =%u.\n",bit,number);
+        }
+        break;
+        default:
+            printf("You entered a non valid operation.Please,try again.\n");
+        }
+    }
+    return 0;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+						////////////task 9//////////////////
+#include <stdio.h>
+#include <stdlib.h>
+void below_pattern(int lines);
+void above_pattern (int lines);
+void xPattern(int lines);
+void middle_pattern (int lines);
+int main(void)
+{
+    below_pattern(5);
+    printf("------------------------------------------\n");
+    above_pattern(5);
+    printf("------------------------------------------\n");
+    xPattern(7);
+    printf("------------------------------------------\n");
+    middle_pattern(4);
+    return 0;
+}
+void below_pattern(int lines)
+{
+    for(int i=0; i<lines; i++)
+    {
+        for(int j=lines-i; j>0; j--)
+            printf("*");
+        printf("\n");
+    }
+}
+void above_pattern(int lines)
+{
+    for(int i=0; i<lines; i++)
+    {
+        for(int j=0; j<=i; j++)
+            printf("*");
+        printf("\n");
+    }
+
+}
+void xPattern(int lines)
+{
+    for(int i=0; i<lines; i++)
+    {
+        for(int j=0;j<lines;j++)
+        {
+            if(j==i || j==lines-i-1)
+                printf("*");
+            else
+                printf(" ");
+        }
+        printf("\n");
+    }
+}
+void middle_pattern(int lines)
+{
+  for(int i=0; i<lines; i++)
+    {
+        for(int j=1;j<lines*2;j++)
+        {
+            if(j>=lines-i && j<=lines+i)
+                printf("*");
+            else
+                printf(" ");
+        }
+        printf("\n");
+    }
+}
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+					/////////////////////////////////////task 10//////////
+#include <stdio.h>
+#include <stdlib.h>
+int max_num_of_zeroes(unsigned int input);
+int main(void)
+{
+   unsigned int input;
+    printf("Enter a number : ");
+    scanf("%u",&input);
+    printf("The maximum number of ones between two zeroes = %d",max_num_of_zeroes(input));
+    return 0;
+}
+unsigned int max_num_of_zeroes(unsigned int input)
+{
+    unsigned int maximum=0,counter=0,slider=1,flag=0;
+    while(slider)
+    {
+        if((slider&input)==0 && flag==1)
+            counter++;
+        else if (slider&input)
+        {
+        flag=1;
+        if(counter>maximum)
+        maximum=counter;
+        counter=0;
+        }
+        slider<<=1;
+    }
+    return maximum;
+}
+///////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+			/////////////////task 11//////////////////////
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+   int l,r,max=0;
+    printf("Enter left value : ");
+    scanf("%d",&l);
+    printf("Enter right value : ");
+    scanf("%d",&r);
+    for(int i=l;i<=r;i++)
+    {
+       for (int j=l;j<=r;j++)
+            if((i^j)>max)
+            max=i^j;
+    }
+    printf("The maximum = %d",max);
+    return 0;
+}
