@@ -1,0 +1,716 @@
+						//Abdelrahman Hesham Abdelghany
+//EX1
+int LastIndex(int Number,int arr[],int Size)
+{
+    int i=0;
+    int LastIndex=-1;
+    for(i=0;i<Size;i++)
+    {
+           if(arr[i]==Number)
+                LastIndex=i;
+    }
+    return LastIndex;
+
+}
+///////////////////////////////////////
+//EX2
+#include <stdio.h>
+#include <stdlib.h>
+void MaxMinNumber(int arr[],int Size,int *Max,int *Min,int *IndexMax,int *IndexMin);
+int main()
+{
+    int arr[]={1,2,3,4,5,6,-1,2};
+    int Max,Min,IndexMax,IndexMin;
+    MaxMinNumber(arr,8,&Max,&Min,&IndexMax,&IndexMin);
+    if(IndexMax==-1 && IndexMin==-1)
+        printf("There is no array");
+    else
+    {
+        printf("The max number is %d and it is index is %d\n the min number is %d and it is index %d",Max,IndexMax,Min,IndexMin);
+    }
+
+    return 0;
+}
+void MaxMinNumber(int arr[],int Size,int *Max,int *Min,int *IndexMax,int *IndexMin)
+{
+
+    if(Size==0)
+    {
+        *IndexMax=-1;
+        *IndexMin=-1;
+        return ;
+    }
+    else
+    {
+        int i=0;
+        *Max=arr[0];
+        *Min=arr[0];
+
+        *IndexMax=0;
+        *IndexMin=0;
+        for(i=0;i<Size;i++)
+        {
+            if((*Max)<=arr[i])
+            {
+                *Max=arr[i];
+                *IndexMax=i;
+            }
+            if ((*Min)>=arr[i])
+            {
+                *Min=arr[i];
+                *IndexMin=i;
+            }
+        }
+    }
+}
+/////////////////////////////////////////////
+//EX3
+#include <stdio.h>
+#include <stdlib.h>
+int NotPower3(int Number);
+int main()
+{
+    int x;
+    printf("Enter a number");
+    scanf("%d",&x);
+    if(!NotPower3(x))
+        printf("%d is a power of 3",x);
+    else
+        printf("%d is not a power of 3",x);
+    return 0;
+}
+int NotPower3(int Number)
+{
+    int i=0;
+    for(i=0;i<=Number/2;i++)
+    {
+        if(i*i*i==Number)
+            return 0;
+    }
+
+    return 1;
+}
+///////////////////////////////////////////////////////////////
+//EX4
+#include <stdio.h>
+#include <stdlib.h>
+void GenerateArray(int begin,int end,int arr[]);
+int main()
+{
+    int arr[20];
+    int begin=2,end=6,i=0;
+    GenerateArray(begin,end,arr);
+    for(i=0;i<(end-begin-1);i++)
+        printf("%d ",arr[i]);
+    return 0;
+}
+void GenerateArray(int begin,int end, int arr[])
+{
+    int i=0;
+    if(begin>end)
+    {
+        begin=begin^end;
+        end=begin^end;
+        begin=begin^end;
+        printf("%d %d",begin,end);
+    }
+    for(i=begin+1;i<end;i++)
+        arr[i-begin-1]=i;
+
+}
+////////////////////////////////////////////
+//EX5
+#include <stdio.h>
+#include <stdlib.h>
+int RepetedNumber(int arr[],int Size);
+int main()
+{
+    int arr[20]={1,2,1,2,3,4,5,1,2,2,2,8};
+    printf("Max Repeadted Number is %d",RepetedNumber(arr,12));
+
+
+    return 0;
+}
+int RepetedNumber(int arr[],int Size)
+{
+    int RepetedNumber=-1;
+    int MaxRepeated=0;
+    int Counter=0;
+    int MaxRepeatedNumber;
+    int i=0;
+    int j=0;
+    for(i=0;i<Size;i++)
+    {
+        RepetedNumber=arr[i];
+        for(j=0;j<Size;j++)
+        {
+            if(arr[j]==RepetedNumber)
+                Counter++;
+        }
+        if(Counter>MaxRepeated)
+        {
+            MaxRepeated=Counter;
+            MaxRepeatedNumber=RepetedNumber;
+        }
+        Counter=0;
+    }
+    return MaxRepeatedNumber;
+}
+///////////////////////////////////////////////////////
+//EX6
+#include <stdio.h>
+#include <stdlib.h>
+void arrayPrint(int arr[],int Size);
+void arrayReverse(int arr[],int Size);
+
+int main()
+    {
+		int array[10]={23,20,31,29,5,41,2,3,4,-1};
+		printf("before reverse \n");
+        arrayPrint(array,10);
+        arrayReverse(array,10);
+        printf("\n after reverse \n");
+        arrayPrint(array,10);
+    }
+void arrayReverse(int arr[],int Size)
+{
+    int temp;
+    for(int i=0; i<=Size/2; i++)
+    {
+        temp=arr[i];
+        arr[i]=arr[Size-i-1];
+        arr[Size-i-1]=temp;
+    }
+}
+void arrayPrint(int a[],int Size)
+    {
+        for(int i=0; i<Size; i++)
+            printf("%d ",a[i]);
+    }
+//////////////////////////////////////////////////////////////
+//EX7
+#include <stdio.h>
+#include <stdlib.h>
+void arraySwap(int arr1[],int SizeArr1,int arr2[],int SizeArr2);
+void arrayPrint(int a[],int Size);
+int main()
+{
+    int Arr1[10]={111,1112,113,114,115,116,117,118,119,223};
+    int Arr2[10]={20,30,40,50,60,56,60,61,24,1234};
+    printf("before swap \n ");
+    printf("Array 1 \n");
+    arrayPrint(Arr1,10);
+    printf("\nArray 2 \n");
+    arrayPrint(Arr2,10);
+    arraySwap(Arr1,10,Arr2,10);
+    printf("\nafter swap \n ");
+    printf("Array 1 \n");
+    arrayPrint(Arr1,10);
+    printf("\nArray 2 \n");
+    arrayPrint(Arr2,10);
+
+
+
+}
+void arraySwap(int arr1[],int SizeArr1,int arr2[],int SizeArr2)
+{
+     int temp;
+    int Size=0;
+    if(SizeArr1<SizeArr2)
+        Size=SizeArr1;
+    else
+        Size=SizeArr2;
+    for(int i=0; i<=Size; i++)
+    {
+        temp=arr1[i];
+        arr1[i]=arr2[Size-i-1];
+        arr2[Size-i-1]=temp;
+    }
+}
+void arrayPrint(int a[],int Size)
+    {
+        for(int i=0; i<Size; i++)
+            printf("%d ",a[i]);
+    }
+//////////////////////////////////////////////////////
+//EX8
+#include <stdio.h>
+#include <stdlib.h>
+int LongestOccurence(int arr[],int Size,int Number);
+void arrayPrint(int a[],int Size);
+int main()
+{
+    int Arr1[14]={1,2,2,3,3,3,3,4,4,4,4,3,3,3};
+    int Number=3;
+    int Occuerence=LongestOccurence(Arr1,14,Number);
+    printf("  Number  is %d and it's occernce is %d",Number,Occuerence);
+
+
+}
+int LongestOccurence(int arr[],int Size,int Number)
+{
+    int i,count=0;
+    int MaxCount=0;
+    if(Size==0)
+    {
+        return -1;
+    }
+    for(i=0;i<Size;i++)
+    {
+        if(Number==arr[i])
+            count++;
+        else
+        {
+            if(count>MaxCount)
+            {
+                MaxCount=count;
+
+            }
+            count=0;
+        }
+    }
+    return MaxCount;
+}
+void arrayPrint(int a[],int Size)
+    {
+        for(int i=0; i<Size; i++)
+            printf("%d ",a[i]);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////
+//EX9
+#include <stdio.h>
+#include <stdlib.h>
+int LongestOccurence(int arr[],int Size,int *longestNumber);
+void arrayPrint(int a[],int Size);
+int main()
+{
+    int Arr1[15]={1,2,2,3,3,3,4,4,4,4,3,3,3,3,3};
+    int LongestNumber;
+    int Occuerence=LongestOccurence(Arr1,15,&LongestNumber);
+    printf("Longest occurence Number  is %d and it's occernce is %d",LongestNumber,Occuerence);
+
+
+}
+int LongestOccurence(int arr[],int Size,int *longestNumber)
+{
+    int i,count=0;
+    int OccurenceNumber,MaxCount=0;
+    if(Size==0)
+    {
+        return -1;
+    }
+    OccurenceNumber=arr[0];
+    for(i=0;i<Size;i++)
+    {
+        if(OccurenceNumber==arr[i])
+            count++;
+        else
+        {
+            OccurenceNumber=arr[i];
+            if(count>MaxCount)
+            {
+                MaxCount=count;
+                *longestNumber=arr[i-1];
+            }
+            count=1;
+        }
+    }
+    if(count>MaxCount)
+    {
+        *longestNumber=arr[i-1];
+        MaxCount=count;
+    }
+    return MaxCount;
+}
+void arrayPrint(int a[],int Size)
+    {
+        for(int i=0; i<Size; i++)
+            printf("%d ",a[i]);
+    }
+
+
+
+
+
+////////////////////
+//EX10
+#include <stdio.h>
+#include <stdlib.h>
+int ArrayMerge(int arr[],int Size1,int arr2[],int Size2,int arr3[]);
+void arrayPrint(int a[],int Size);
+int main()
+{
+ int arr1[]={1,2,3,4};
+ int arr2[]={5,6,7,8,9,10};
+ int arr3[100];
+ int Size=ArrayMerge(arr1,4,arr2,5,arr3);
+ arrayPrint(arr3,Size);
+
+}
+int ArrayMerge(int arr[],int Size1,int arr2[],int Size2,int arr3[])
+{
+    int i=0;
+    int j=0;
+    int AllSize=Size2+Size1;
+    int MinSize=(Size1<Size2)?Size1:Size2;
+    MinSize=2*MinSize;
+    for(i=0;i<MinSize;i=i+2)
+       {
+         arr3[i]=arr[j];
+         arr3[i+1]=arr2[j];
+         j++;
+       }
+    if(Size1<Size2)
+    {
+        for(;i<AllSize;i++)
+        {
+            arr3[i]=arr2[i-Size1];
+        }
+    }
+    else if(Size1>Size2)
+    {
+        for(;i<AllSize;i++)
+        {
+            arr3[i]=arr[i-Size2];
+        }
+    }
+}
+void arrayPrint(int a[],int Size)
+    {
+        for(int i=0; i<Size; i++)
+            printf("%d ",a[i]);
+    }
+//////////////////////
+//EX11
+#include <stdio.h>
+#include <stdlib.h>
+int New_Array(int arr[],int Size) //take array modifiy it and return new Size of it after removing it is element
+{
+    int temp;
+    int i,j=1;
+    if(Size<=0)
+        return -1;
+    temp=arr[0];
+	for(i=1;i<Size;i++)
+    {
+       if(temp==arr[i])
+            continue;
+       else
+       {
+            arr[j]=arr[i];
+            j++;
+            temp=arr[i];
+       }
+    }
+    return j;
+}
+
+void arrayPrint(int a[],int Size);
+int main()
+{
+    int Arr1[17]={1,1,2,2,3,3,3,4,4,4,4,5,5,5,5,5,6};
+    arrayPrint(Arr1,17);
+    int New_Size=New_Array(Arr1,17);
+    printf("\nafter removing repeated numbers\n ");
+    arrayPrint(Arr1,New_Size);
+
+
+}
+
+void arrayPrint(int a[],int Size)
+    {
+        for(int i=0; i<Size; i++)
+            printf("%d ",a[i]);
+    }
+
+//////////////////////////////
+//EX12
+#include <stdio.h>
+#include <stdlib.h>
+void SwapZeros(int *arr);
+void PrintArray(int *arr,int Size)
+{
+    int i=0;
+    for(i=0;i<Size;i++)
+        printf("%d ",arr[i]);
+    printf("\n");
+}
+int main()
+{
+    int arr[20]={1,2,3,0,1,2,3,4,5,6,7,0,10,20,30,1,2,3,7,80};
+
+    printf("array befor swaping \n");
+    PrintArray(arr,20);
+    SwapZeros(arr);
+    printf("array after swapping \n");
+    PrintArray(arr,20);
+    int n;
+}
+void SwapZeros(int *arr)
+{
+    int i=0;
+    int Temp;
+    int SwapCount=0;
+    int FirstIndex=-1,secondIndex=-1;
+    for(i=0;;i++)
+    {
+        if(arr[i]==0)
+        {
+            if(FirstIndex ==-1)
+                FirstIndex=i+1;
+
+            else if(secondIndex==-1)
+            {
+                secondIndex=i+1;
+                break;
+            }
+           SwapCount++;
+        }
+
+    }
+    for(int j=0;j<3;j++)
+    {
+       Temp=arr[FirstIndex+j];
+       arr[FirstIndex+j]=arr[secondIndex+j];
+       arr[secondIndex+j]=Temp;
+
+
+
+    }
+
+}
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////////
+//EX13
+
+#include <stdio.h>
+#include <stdlib.h>
+int  biggest_difference(int arr[],int Size) //take array modifiy it and return new Size of it after removing it is element
+{
+    int temp;
+    int i,j,difference,BigDifference=0;
+    if(Size<=0)
+        return -1;
+    for(i=0;i<Size;i++)
+    {
+        for(j=i+1;j<Size;j++)
+        {
+            if(arr[i]>arr[j])
+                break;
+            else
+            {
+                difference=arr[j]-arr[i];
+                if(difference>BigDifference)
+                {
+                    BigDifference=difference;
+                }
+            }
+        }
+    }
+    return BigDifference;
+}
+
+void arrayPrint(int a[],int Size);
+int main()
+{
+    int Arr1[8]={10,1,5,3,6,8,7,2};
+    int Difference=biggest_difference(Arr1,8);
+    printf("difference is %d ",Difference);
+
+
+}
+
+void arrayPrint(int a[],int Size)
+    {
+        for(int i=0; i<Size; i++)
+            printf("%d ",a[i]);
+    }
+
+//////////////////////////////////
+//EX14
+#include <stdio.h>
+#include <stdlib.h>
+int MostRepeatedNum(char * arr,int Size);
+int main()
+{
+    char MyArr[]={'a','b','a','c','d','e','f','h','e','w','q','o','u','e','a','a','b','b','b','b','b'};
+    printf("%c",MostRepeatedNum(MyArr,sizeof(MyArr)/sizeof(char)));
+}
+int MostRepeatedNum(char * arr,int Size)
+{
+    int i=0;
+    int ReapeatedNum=0;
+    int RepeatedMax=0;
+    int MaxNumReapeated;
+    int j=0;
+    for(i=0;i<Size;i++)
+    {
+        for(j=0;j<Size;j++)
+        {
+            if(arr[i]==arr[j])
+                ReapeatedNum++;
+        }
+        if(ReapeatedNum>RepeatedMax)
+        {
+            RepeatedMax=ReapeatedNum;
+            MaxNumReapeated=arr[i];
+        }
+        ReapeatedNum=0;
+    }
+    return MaxNumReapeated;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////////
+//EX15
+//EX15
+#include <stdio.h>
+#include <stdlib.h>
+void Swap_TwoPointers(int **p1, int **p2)
+{
+    int *temp;
+    temp=*p1;
+    *p1=*p2;
+    *p2=temp;
+}
+int main()
+{
+    int x=6;
+    int y=7;
+    int *p1=&x;
+    int *p2=&y;
+    printf(" p1 is point to %d and p2 is point to %d\n",*p1,*p2);
+    Swap_TwoPointers(&p1,&p2);
+    printf("now p1 is point to %d and p2 is point to %d",*p1,*p2);
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/////////////////////
+//EX16
+#include <stdio.h>
+#include <stdlib.h>
+int FibonancciSeq(int N);
+int main()
+{
+    int n;
+ while(1)
+ {
+     scanf("%d",&n);
+     printf("%d\n",FibonancciSeq(n));
+ }
+}
+int FibonancciSeq(int N)
+{
+    if(N==1)
+        return 1;
+    else if(N<=0)
+        return 0;
+    else
+    {
+        return FibonancciSeq(N-2)+FibonancciSeq(N-1);
+    }
+}
+
+
+
+///////////////////
+//EX17
+#include <stdio.h>
+#include <stdlib.h>
+void MaxMono();
+
+int main()
+{
+    MaxMono();
+}
+void MaxMono()
+{
+    long long Numb;
+    int a;
+    int count=0;
+    printf("%d \n",sizeof(Numb));
+    int MaxRepeated=-1;
+    char MaxNumb;
+    int i=0;
+    for(i=0;i<9;i++)
+    {
+        scanf("%d",&a);
+        if(a>9)
+            return -1;
+        else
+        {
+             count=Numb>>(4*a);
+        count=count+1;
+        Numb=Numb&~((long long)0xF<<(long long)(4*a));
+        Numb=Numb |((long long)count<<(long long)(4*a));
+        if(MaxRepeated<(((long long)Numb>>(long long)(4*a))&(long long)0xf))
+            {
+            MaxRepeated=(((long long)Numb>>(long long)(4*a))&(long long)0xf);
+            MaxNumb=a;
+            }
+        }
+    }
+
+    printf("Max RepatedNumber is %d",MaxNumb);
+
+}
