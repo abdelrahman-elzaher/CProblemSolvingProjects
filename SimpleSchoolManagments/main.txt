@@ -1,0 +1,88 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include "school.h"
+int main()
+{
+
+
+    char Name[100];
+    int age;
+    int Case;
+    States MyStates;
+    while(1)
+    {
+        fflush(stdin),fflush(stdout);
+        printf("1 if you want to delete a student\n2 if you want to edit student\n3 if you want to add a student\n");
+        printf("4 if you want to clear dataBase\n5 if you want to print students\n6 if you want to print one  student\n");
+        fflush(stdin),fflush(stdout);
+        scanf("%d",&Case);
+        fflush(stdin),fflush(stdout);
+        switch(Case)
+        {
+            case 1:
+                MyStates=Delete_Student();
+                if(MyStates==No_ExistName)
+                    printf("Not exist Name found in Our DataBase\n");
+                else if(MyStates==No_ExistId)
+                    printf("Not exist Name Id in Our DataBase\n");
+                else if(MyStates==No_Student)
+                    printf("Our DataBase is empty\n");
+                else if(MyStates==Done)
+                    printf("Student Have been Deleted Successfully\n");
+                break;
+
+            case 2:
+                MyStates=Edit_Student();
+                if(MyStates==No_ExistName)
+                    printf("Not exist Name found in Our DataBase\n");
+                else if(MyStates==No_ExistId)
+                    printf("Not exist Name Id in Our DataBase\n");
+                else if(MyStates==No_Student)
+                    printf("Our DataBase is empty\n");
+                else if(MyStates==Done)
+                    printf("Student Have been Editied Successfully\n");
+                    break;
+            case 3:
+                printf("Enter The Name Of New Student :");
+                fflush(stdin),fflush(stdout);
+                scanf("%[^\n]s",Name);
+                fflush(stdin),fflush(stdout);
+                printf("Enter The age ");
+                scanf("%d",&age);
+                MyStates=add_Student(Name,age);
+                if(MyStates==No_ExistName)
+                    printf("Not exist Name found in Our DataBase\n");
+                else if(MyStates==No_ExistId)
+                    printf("Not exist Name Id in Our DataBase\n");
+                else if(MyStates==No_Student)
+                    printf("Our DataBase is empty\n");
+
+                    break;
+            case 4:
+                ClearSchool();
+                break;
+            case 5:
+                MyStates=Print_School();
+                if(MyStates==No_Student)
+                    printf("Our DataBase is empty\n");
+                    break;
+            case 6:
+                MyStates=Print_Student();
+                if(MyStates==No_ExistName)
+                    printf("Not exist Name found in Our DataBase\n");
+                else if(MyStates==No_ExistId)
+                    printf("Not exist Name Id in Our DataBase\n");
+                else if(MyStates==No_Student)
+                    printf("Our DataBase is empty\n");
+                    break;
+            default:
+                printf("You have entered a wrong choise please try again\n");
+                break;
+
+        }
+
+    }
+
+    Print_School();
+    return 0;
+}

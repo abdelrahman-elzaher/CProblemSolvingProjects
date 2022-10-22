@@ -1,0 +1,22 @@
+#define Max_Size    1200
+typedef struct
+{
+    char Name[100];
+    int age;
+    int id;
+}std_t;
+typedef enum
+{
+    No_Student,
+    Full_School,
+    Done,
+    No_ExistId,
+    No_ExistName
+}States;
+extern std_t School[Max_Size];
+States Delete_Student();
+States Edit_Student();
+States add_Student(char *name,int age);
+void ClearSchool();
+States Print_School();
+States Print_Student();
